@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Indie+Flower" />
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" type="image/jpg" href="popcorn.jpg">
+<title>Movie Generator</title>
+</head>
+
+<body>
+
+<div ng-app="" ng-controller="movieController" ng-init="showSelection=true"> 
+	<div class="start" ng-show="showSelection">
+		<h1>Movie Generator</h1>
+		<h2>Select desired genres and pass the popcorn!</h2>
+		<br>
+ 		<select ng-init="genre1=test[0].id" ng-model="genre1" ng-options="t.id as t.name for t in test"></select>
+ 		<br>
+ 		<br>
+ 		<img ng-click="generateResult();showSelection=!showSelection" src=popcorn.jpg></img>
+ 		<br>
+ 		<br>
+ 		<select ng-init="genre2=test[0].id" ng-model="genre2" ng-options="t.id as t.name for t in test"></select>
+	</div>
+	<div class="resultView" ng-show="!showSelection">
+		<div>
+			<h1>Hey buddy look over here you definitely must watch</h1>
+ 			<h1>{{result}}</h1>
+ 			<img class="mov" ng-click="goToImdb()" ng-src="{{poster}}" title="View on IMDb" />
+ 			<p class="resultText">{{description}}</p>
+ 			<h2>Imdb rating: {{rating}}</h2>
+ 		</div>
+ 		<br>
+ 		<div class="resultButtons">
+ 			<button ng-click="previousMovie()" ng-disabled="i<2">Previous movie</button>
+ 			<button ng-click="showSelection=!showSelection">Select New Genres</button>
+ 			<button ng-click="generateResult()">Another movie</button>
+ 		</div>	
+ 	</div>
+</div>
+
+
+<script src="genres.js"></script>
+<script src="config.js"></script>
+<script src="movieScripts.js"></script>
+</body>
+</html>
